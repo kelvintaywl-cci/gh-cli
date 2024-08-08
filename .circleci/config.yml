@@ -7,8 +7,20 @@ jobs:
   auth:
     docker:
       - image: cimg/base:stable
+    environment:
+      GITHUB_USER: kelvintaywl
     steps:
       - gh/setup
+      - checkout
+      - run:
+          name: push new branch
+          command: |
+            git config --global user.email "dummy@local"
+            git config --global user.name "${GITHUB_USER}"
+            BRANCH=${CIRCLE_SHA:0:7}
+            git checkout -b $BRANCH
+            git commit --allow-empty -m "[skip ci] dummy"
+            git push -u origin $BRANCH
 
 workflows:
   gh:
