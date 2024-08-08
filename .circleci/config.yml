@@ -17,7 +17,7 @@ jobs:
           command: |
             git config --global user.email "dummy@local"
             git config --global user.name "${GITHUB_USER}"
-            BRANCH="foobar_${CIRCLE_SHA:0:7}"
+            BRANCH="foobar_${CIRCLE_SHA1:0:7}"
             git checkout -b $BRANCH
             git commit --allow-empty -m "[skip ci] dummy"
             git push -u origin $BRANCH
