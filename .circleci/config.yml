@@ -1,0 +1,16 @@
+version: 2.1
+
+orbs:
+  gh: circleci/github-cli@2.1.1
+
+jobs:
+  auth:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - gh/setup:
+
+workflows:
+  gh:
+    jobs:
+      - auth
